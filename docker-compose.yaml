@@ -1,0 +1,30 @@
+version: '3'
+networks:
+  net:
+
+services:
+
+  api:
+    depends_on: 
+      - db
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./:/api
+    restart: always
+    networks:
+      - net
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: parking_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+    ports:
+      - "5432:5432"
+    networks:
+      - net
+    volumes:
+      - ./db:/var/lib/postgresql/data
