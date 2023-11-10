@@ -1,7 +1,7 @@
 from app.models import Vehicle as v
-from app.schemas import VehicleSchema
 from app.db_conn import app
-
+from app.services.vehicles import VehicleServices
+from flask import Flask, request, jsonify
 
 @app.route("/")
 def hello():
@@ -10,12 +10,13 @@ def hello():
 
 @app.route("/vehicles/create", methods=['post'])
 def create():
-    return 'criou'
-
+    req_data = request.get_json()
+    return jsonify(
+        {
+            "color" : req_data[0]["color"]
+        })
 @app.route("/vehicles/list")
 def list():
-    vehicle_schema = VehicleSchema(many=True)
-    all_vehicles = v.query.all()
-    return vehicle_schema.dump(all_vehicles)
+    return jsonify(VehicleServices.list_all_vehicles())
 
 

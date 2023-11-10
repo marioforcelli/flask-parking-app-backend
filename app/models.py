@@ -18,7 +18,11 @@ class Vehicle(db.Model):
     license_plate : Mapped[str] = mapped_column(db.String)
     vehicle_type : Mapped[str] = mapped_column(db.Enum(TypeVehicleEnum))
 
-
+    def __init__(self, brand, color, license_plate, vehicle_type):
+        self.brand = brand
+        self.color = color
+        self.license_plate = license_plate
+        self.vehicle_type = vehicle_type
 
 class Company(db.Model):
     id_company: Mapped[int] = mapped_column(db.Integer, primary_key=True)

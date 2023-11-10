@@ -19,9 +19,9 @@ class CompanySchema(Schema):
     class Meta:
         model = Company 
     
-    id_company = ma.auto_field()  
-    cnpj = ma.auto_field()
-    address = ma.auto_field()
-    phone = ma.auto_field()
-    car_spaces = ma.auto_field()
-    motorcycle_spaces = ma.auto_field()
+    id_company = fields.Int()  
+    cnpj = fields.Str(required=True)
+    address = fields.Str(required=True)
+    phone = fields.Str(required=True)
+    car_spaces = fields.Int(required=True)
+    motorcycle_spaces = fields.Int(required=True)
