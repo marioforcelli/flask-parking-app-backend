@@ -11,10 +11,15 @@ def hello():
 @app.route("/vehicles/create", methods=['post'])
 def create():
     req_data = request.get_json()
-    return jsonify(
-        {
-            "color" : req_data[0]["color"]
-        })
+    data = {
+        "brand": req_data[0]["brand"],
+        "color": req_data[0]["color"],
+        "vehicle_type": req_data[0]["vehicle_type"],
+        "license_plate": req_data[0]["license_plate"]
+    }
+    VehicleServices.create(vehicle_data=data)
+    return jsonify(data)
+
 @app.route("/vehicles/list")
 def list():
     return jsonify(VehicleServices.list_all_vehicles())
