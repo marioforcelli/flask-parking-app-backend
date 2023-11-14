@@ -56,7 +56,8 @@ def list():
     
 
 @app.route("/vehicles/delete/<id>", methods=['DELETE'])
-def delete(id):
+def delete(id): 
+    
     try:
          VehicleServices.delete_vehicle(id)
     except Exception:
